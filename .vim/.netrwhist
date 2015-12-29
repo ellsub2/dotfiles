@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/heliumu/Desktop/linux-master/arch'
+let g:netrw_dirhist_2='/home/heliumu/Desktop/linux-master'
+let g:netrw_dirhist_3='/home/heliumu'
+let g:netrw_dirhist_4='/home/heliumu/Dotfiles/.vim/colors/helium-gas'
+let g:netrw_dirhist_5='/home/heliumu/Dotfiles/.vim/colors/helium-gas/colors'
+let g:netrw_dirhist_6='/home/heliumu/Dotfiles/.vim/colors/helium-gas'
+let g:netrw_dirhist_7='/home/heliumu/Dotfiles/.vim/colors/helium-gas/colors'
+let g:netrw_dirhist_8='/home/heliumu/sketchbook/ProjectSaturn/TestI2c-4'
+let g:netrw_dirhist_9='/home/heliumu/sketchbook/ProjectSaturn/TestI2c-4/_2master'

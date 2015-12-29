@@ -1,0 +1,9 @@
+filelist_bundle
+NeoBundle.lock
+lightline.vim
+neobundle.vim
+neocomplete.vim
+vim-indent-guides
+vim-quickhl
+vim-quickrun
+vimfiler.vim
