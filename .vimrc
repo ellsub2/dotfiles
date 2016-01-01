@@ -121,6 +121,7 @@ NeoBundleFetch 'Shougo/neobundle.vim' 			"neobundle自体をneobundleで管理
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
+	let g:neocomplete#enable_at_startup = 1
 	if !exists('g:neocomplete#force_omni_input_patterns')
 		let g:neocomplete#force_omni_input_patterns = {}
 	endif
@@ -151,9 +152,10 @@ NeoBundle 'vim-jp/cpp-vim',{
 NeoBundle 'sudar/vim-arduino-syntax'
 
 "rsense
-NeoBundle 'NigoroJr/rsense'
-NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
-    \ 'autoload' : { 'insert' : 1, 'filetype' : 'ruby', } }
+NeoBundle 'supermomonga/neocomplete-rsense.vim'
+"rsense v0.3 -> http://cx4a.org/pub/rsense/rsense-0.3.zip
+let g:rsenseHome = '/usr/src/rsense-0.3'
+let g:rsenseUseOmniFunc = 1
 
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}

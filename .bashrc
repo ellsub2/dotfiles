@@ -113,3 +113,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export RSENSE_HOME=/usr/src/rsense-0.3
