@@ -122,6 +122,15 @@ NeoBundleFetch 'Shougo/neobundle.vim' 			"neobundle自体をneobundleで管理
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
 	let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_ignore_case = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#enable_auto_select = 1
+    let g:neocomplete#enable_enable_camel_case_completion = 0
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns._ = '\h\w*'
+	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 	if !exists('g:neocomplete#force_omni_input_patterns')
 		let g:neocomplete#force_omni_input_patterns = {}
 	endif
@@ -152,10 +161,9 @@ NeoBundle 'vim-jp/cpp-vim',{
 NeoBundle 'sudar/vim-arduino-syntax'
 
 "rsense
-NeoBundle 'supermomonga/neocomplete-rsense.vim'
-"rsense v0.3 -> http://cx4a.org/pub/rsense/rsense-0.3.zip
-let g:rsenseHome = '/usr/src/rsense-0.3'
-let g:rsenseUseOmniFunc = 1
+NeoBundle 'NigoroJr/rsense'
+NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
+    \ 'autoload' : { 'insert' : 1, 'filetype' : 'ruby', } }
 
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
