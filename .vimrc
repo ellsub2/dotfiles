@@ -1,5 +1,5 @@
 "=====================================================================================
-"	heliumu's vimrc
+"	orion3939's vimrc
 "	Can't use on Windows.
 "=====================================================================================
 
@@ -7,8 +7,7 @@
 if has('vim_starting')
 	"vi 互換モード対策
 	if &compatible
-	  set nocompatible	"なんか効果ないんですけど…
-	  					"inoremap <C-[> <ESC>が悪さをしていたみたい
+		set nocompatible
 	endif
 
 	"NeoBundle Required
@@ -21,7 +20,6 @@ filetype plugin indent off
 
 
 " Encode
-" COMMENT:S-JISは帰って、どうぞ。
 "=====================================================================================
 set encoding=UTF-8
 set fileencoding=UTF-8
@@ -31,24 +29,31 @@ set termencoding=UTF-8
 " エディタ関係
 "=====================================================================================
 " 表示関係
-set number                      	" set line number
-set title                       	" Display file name
-set nowrap							" 画面端で折り返さない
-set cursorline                  	" 現在位置を横線で表示
-set cursorcolumn					" 現在位置を縦線で表示
+set number		" set line number
+set title			" Display file name
+set nowrap		" 画面端で折り返さない
+set cursorline		" 現在位置を横線で表示
+set cursorcolumn	" 現在位置を縦線で表示
 "set ruler	
 
 " indent関係
-set tabstop=4                   	" Tab size
-set noexpandtab                 	" Tab is tab
-set shiftwidth=4                	" Auto indent tab size
-set autoindent                  	" On auto indent
-set smartindent             
+set tabstop=2
+set shiftwidth=2	" Auto indent tab size
+set noexpandtab		" Tab is space
+
+augroup vimrc
+	autocmd! FileType c++		setlocal shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd! FileType c			setlocal shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd! FileType ruby 	setlocal shiftwidth=2 tabstop=2 softtabstop=2
+augroup END
+
+set autoindent	" On auto indent
+set smartindent	
 
 " system・file関係
-set clipboard=unnamed,autoselect	" clipboard for 'OS clipboard'
-set noswapfile                  	" No make swap file(~file)
-set autoread						" ファイル更新時に自動読み込み
+set clipboard=unnamed,autoselect	" OSのクリップボードと共用に
+set noswapfile	" No make swap file(~file)
+set autoread 		" ファイル更新時に自動読み込み
 
 
 " cui関係
@@ -66,12 +71,12 @@ set autoread						" ファイル更新時に自動読み込み
 "=====================================================================================
 if has('gui_running')
 	" font関係
-	set guifont=ubuntu\ mono\ 11    " font
+	set guifont=ubuntu\ mono\ 11	" font
 	set linespace=0
 
 	" 起動時の大きさ
-	set columns=120					"window height
-	set lines=35    				"window wheight
+	set columns=120	"window height
+	set lines=35		"window wheight
 	
 	" 背景・色
 	set background=dark
@@ -82,7 +87,7 @@ endif
 
 " keyMap
 "=====================================================================================
-inoremap <c-c> <Esc>                 " C-c is ESC
+inoremap <c-c> <Esc>	" C-c is ESC
 inoremap <c-j> <ESC>
 
 " 参考:http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
@@ -106,8 +111,8 @@ nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sT :<C-u>Unite tab<CR>
-nnoremap ss :<C-u>sp<CR>			" 水平分割
-nnoremap sv :<C-u>vs<CR>			" 垂直分割
+nnoremap ss :<C-u>sp<CR>	" 水平分割
+nnoremap sv :<C-u>vs<CR>	" 垂直分割
 nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
@@ -116,39 +121,39 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
 " plugin
 "=====================================================================================
-call neobundle#begin(expand('~/.vim/bundle/')) 	"equired:
-NeoBundleFetch 'Shougo/neobundle.vim' 			"neobundle自体をneobundleで管理
+call neobundle#begin(expand('~/.vim/bundle/'))	"equired:
+NeoBundleFetch 'Shougo/neobundle.vim'	"neobundle自体をneobundleで管理
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
 	let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_ignore_case = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#enable_auto_select = 1
-    let g:neocomplete#enable_enable_camel_case_completion = 0
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns._ = '\h\w*'
-	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	let g:neocomplete#enable_ignore_case = 1
+	let g:neocomplete#enable_smart_case = 1
+	let g:neocomplete#enable_auto_select = 1
+	let g:neocomplete#enable_enable_camel_case_completion = 0
+	if !exists('g:neocomplete#keyword_patterns')
+	let g:neocomplete#keyword_patterns = {}
+	endif
+	let g:neocomplete#keyword_patterns._ = '\h\w*'
+	inoremap <expr><TAB>	pumvisible() ? "\<C-n>" : "\<TAB>"
 	if !exists('g:neocomplete#force_omni_input_patterns')
-		let g:neocomplete#force_omni_input_patterns = {}
+	let g:neocomplete#force_omni_input_patterns = {}
 	endif
 	let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+	\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
-NeoBundle 'itchyny/lightline.vim'	            "ステータスライン全体拡張
+NeoBundle 'itchyny/lightline.vim'	"ステータスライン全体拡張
 	set laststatus=2
 	let g:lightline = {
-   	\ 'colorscheme': 'wombat'
+	\ 'colorscheme': 'wombat'
 	\ }
 	nmap <Space>m <Plug>(quickhl-manual-this)
 	xmap <Space>m <Plug>(quickhl-manual-this)
 	nmap <Space>M <Plug>(quickhl-manual-reset)
 	xmap <Space>M <Plug>(quickhl-manual-reset)
 
-NeoBundle 'scrooloose/nerdtree'					"ファイルツリー表示系男子
-NeoBundle 'tomtom/tcomment_vim'					"comment on/offを<c-_>でできる
+NeoBundle 'scrooloose/nerdtree'	"ファイルツリー表示系男子
+NeoBundle 'tomtom/tcomment_vim'	"comment on/offを<c-_>でできる
 NeoBundle 'vim-jp/cpp-vim',{
 	\ 'autoload' : {'filetypes' : 'cpp'}
 	\ }
@@ -163,21 +168,21 @@ NeoBundle 'sudar/vim-arduino-syntax'
 "rsense
 NeoBundle 'NigoroJr/rsense'
 NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
-    \ 'autoload' : { 'insert' : 1, 'filetype' : 'ruby', } }
+	\ 'autoload' : { 'insert' : 1, 'filetype' : 'ruby', } }
 
 if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
+	let g:neocomplete#force_omni_input_patterns = {}
 endif
-  let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+	let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
 
-  let g:rsenseUseOmniFunc = 1
+	let g:rsenseUseOmniFunc = 1
 
 " end sequence
 "=====================================================================================
 call neobundle#end()
 
-syntax on			"色分け
-filetype on			"ファイルタイプの識別
+syntax on	"色分け
+filetype on	"ファイルタイプの識別
 filetype indent on
 filetype plugin on
 
