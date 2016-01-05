@@ -42,9 +42,9 @@ set shiftwidth=2	" Auto indent tab size
 set noexpandtab		" Tab is space
 
 augroup vimrc
-	autocmd! FileType c++		setlocal shiftwidth=4 tabstop=4 softtabstop=4
-	autocmd! FileType c			setlocal shiftwidth=4 tabstop=4 softtabstop=4
-	autocmd! FileType ruby 	setlocal shiftwidth=2 tabstop=2 softtabstop=2
+	autocmd! FileType c++  setlocal shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd! FileType c    setlocal shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd! FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 
 set autoindent	" On auto indent
